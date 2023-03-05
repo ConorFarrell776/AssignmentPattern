@@ -96,7 +96,7 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 			else if(empDetails.getComponent(i) instanceof JTextField){
 				field = (JTextField) empDetails.getComponent(i);
 				if(field == ppsField)
-					field.setDocument(new JTextFieldLimit(9));
+					field.setDocument(new JTextFieldLimit(7));
 				else
 				field.setDocument(new JTextFieldLimit(20));
 			}// end else if
@@ -125,11 +125,7 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 	public boolean checkInput() {
 		boolean valid = true;
 		// if any of inputs are in wrong format, colour text field and display message
-		if (ppsField.getText().equals("")) {
-			ppsField.setBackground(new Color(255, 150, 150));
-			valid = false;
-		}// end if
-		if (this.parent.correctPps(this.ppsField.getText().trim(), -1)) {
+		if (ppsField.getText().equals("") || this.parent.correctPps(this.ppsField.getText().trim(), -1))  {
 			ppsField.setBackground(new Color(255, 150, 150));
 			valid = false;
 		}// end if
